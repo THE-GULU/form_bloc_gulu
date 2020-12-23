@@ -64,7 +64,7 @@ class LoginForm extends StatelessWidget {
       create: (context) => LoginFormBloc(),
       child: Builder(
         builder: (context) {
-          final loginFormBloc = context.bloc<LoginFormBloc>();
+          final loginFormBloc = BlocProvider.of<LoginFormBloc>(context);
 
           return Scaffold(
             resizeToAvoidBottomInset: false,
@@ -82,7 +82,7 @@ class LoginForm extends StatelessWidget {
               onFailure: (context, state) {
                 LoadingDialog.hide(context);
 
-                Scaffold.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.failureResponse)));
               },
               child: SingleChildScrollView(

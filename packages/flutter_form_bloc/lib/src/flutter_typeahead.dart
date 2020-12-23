@@ -258,10 +258,10 @@ library flutter_typeahead;
 import 'dart:async';
 import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -831,7 +831,8 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
         minLines: widget.textFieldConfiguration.minLines,
         maxLines: widget.textFieldConfiguration.maxLines,
         maxLength: widget.textFieldConfiguration.maxLength,
-        maxLengthEnforced: widget.textFieldConfiguration.maxLengthEnforced,
+        maxLengthEnforcement:
+            widget.textFieldConfiguration.maxLengthEnforcement,
         obscureText: widget.textFieldConfiguration.obscureText,
         onTap: widget.onTap,
         onChanged: (value) {
@@ -1429,11 +1430,10 @@ class TextFieldConfiguration<T> {
   /// Same as [TextField.maxLength](https://docs.flutter.io/flutter/material/TextField/maxLength.html)
   final int maxLength;
 
-  /// If true, prevents the field from allowing more than [maxLength]
-  /// characters.
+  /// Determines how the [maxLength] limit should be enforced.
   ///
   /// Same as [TextField.maxLengthEnforced](https://docs.flutter.io/flutter/material/TextField/maxLengthEnforced.html)
-  final bool maxLengthEnforced;
+  final MaxLengthEnforcement maxLengthEnforcement;
 
   /// Whether to hide the text being edited (e.g., for passwords).
   ///
@@ -1565,7 +1565,7 @@ class TextFieldConfiguration<T> {
     this.onChanged,
     this.onSubmitted,
     this.obscureText = false,
-    this.maxLengthEnforced = true,
+    this.maxLengthEnforcement,
     this.maxLength,
     this.minLines,
     this.maxLines = 1,
@@ -1608,7 +1608,7 @@ class TextFieldConfiguration<T> {
       ValueChanged<T> onChanged,
       ValueChanged<T> onSubmitted,
       bool obscureText,
-      bool maxLengthEnforced,
+      MaxLengthEnforcement maxLengthEnforcement,
       int maxLength,
       int minLines,
       int maxLines,
@@ -1635,7 +1635,7 @@ class TextFieldConfiguration<T> {
         onChanged: onChanged ?? this.onChanged,
         onSubmitted: onSubmitted ?? this.onSubmitted,
         obscureText: obscureText ?? this.obscureText,
-        maxLengthEnforced: maxLengthEnforced ?? this.maxLengthEnforced,
+        maxLengthEnforcement: maxLengthEnforcement ?? this.maxLengthEnforcement,
         maxLength: maxLength ?? this.maxLength,
         minLines: minLines ?? this.minLines,
         maxLines: maxLines ?? this.maxLines,

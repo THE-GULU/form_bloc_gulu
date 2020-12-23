@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pedantic/pedantic.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../flutter_form_bloc.dart';
@@ -81,9 +82,9 @@ class _CanShowFieldBlocBuilderState extends State<CanShowFieldBlocBuilder>
 
       if (widget.animate) {
         if (_showOnFirstFrame) {
-          _controller.reverse();
+          unawaited(_controller.reverse());
         } else {
-          _controller.forward();
+          unawaited(_controller.forward());
         }
       }
     } catch (e) {

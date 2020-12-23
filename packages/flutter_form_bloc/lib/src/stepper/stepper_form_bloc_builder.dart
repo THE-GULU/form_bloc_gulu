@@ -165,7 +165,7 @@ class StepperFormBlocBuilder<T extends FormBloc> extends StatelessWidget {
       buildWhen: (p, c) =>
           p.numberOfSteps != c.numberOfSteps || p.currentStep != c.currentStep,
       builder: (context, state) {
-        final formBloc = this.formBloc ?? context.bloc<T>();
+        final formBloc = this.formBloc ?? BlocProvider.of<T>(context);
 
         final formBlocSteps = stepsBuilder(formBloc);
         return Stepper(

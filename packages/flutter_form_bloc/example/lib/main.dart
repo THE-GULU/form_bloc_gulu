@@ -133,7 +133,7 @@ class AllFieldsForm extends StatelessWidget {
                 onFailure: (context, state) {
                   LoadingDialog.hide(context);
 
-                  Scaffold.of(context).showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.failureResponse)));
                 },
                 child: SingleChildScrollView(

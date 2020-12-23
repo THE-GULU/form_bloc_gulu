@@ -110,7 +110,7 @@ class Club {
   Club.fromJson(Map<String, dynamic> json) {
     clubName = json['clubName'];
     if (json['members'] != null) {
-      members = List<Member>();
+      members = List<Member>.empty(growable: true);
       json['members'].forEach((v) {
         members.add(Member.fromJson(v));
       });
@@ -169,7 +169,7 @@ class ListFieldsForm extends StatelessWidget {
       create: (context) => ListFieldFormBloc(),
       child: Builder(
         builder: (context) {
-          final formBloc = context.bloc<ListFieldFormBloc>();
+          final formBloc = BlocProvider.of<ListFieldFormBloc>(context);
 
           return Theme(
             data: Theme.of(context).copyWith(
@@ -193,7 +193,7 @@ class ListFieldsForm extends StatelessWidget {
                 onSuccess: (context, state) {
                   LoadingDialog.hide(context);
 
-                  Scaffold.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: SingleChildScrollView(
                         child: Text(state.successResponse)),
                     duration: Duration(milliseconds: 1500),
@@ -202,7 +202,7 @@ class ListFieldsForm extends StatelessWidget {
                 onFailure: (context, state) {
                   LoadingDialog.hide(context);
 
-                  Scaffold.of(context).showSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(state.failureResponse)));
                 },
                 child: SingleChildScrollView(

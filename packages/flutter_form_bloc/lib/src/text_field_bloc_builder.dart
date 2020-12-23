@@ -3,18 +3,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/src/can_show_field_bloc_builder.dart';
 import 'package:flutter_form_bloc/src/flutter_typeahead.dart';
 import 'package:flutter_form_bloc/src/utils/utils.dart';
 import 'package:form_bloc/form_bloc.dart';
-import 'package:flutter/widgets.dart';
-
-export 'package:flutter/widgets.dart' show EditableText;
 
 export 'package:flutter/services.dart'
     show TextInputType, TextInputAction, TextCapitalization;
-
+export 'package:flutter/widgets.dart' show EditableText;
 export 'package:flutter_form_bloc/src/flutter_typeahead.dart'
     show SuggestionsBoxDecoration;
 
@@ -102,7 +100,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
     this.minLines,
     this.expands = false,
     this.maxLength,
-    this.maxLengthEnforced = true,
+    this.maxLengthEnforcement,
     this.onChanged,
     this.onEditingComplete,
     this.onSubmitted,
@@ -168,7 +166,6 @@ class TextFieldBlocBuilder extends StatefulWidget {
         assert(keepSuggestionsOnLoading != null),
         assert(showSuggestionsWhenIsEmpty != null),
         assert(autocorrect != null),
-        assert(maxLengthEnforced != null),
         assert(scrollPadding != null),
         assert(dragStartBehavior != null),
         assert(maxLines == null || maxLines > 0),
@@ -460,60 +457,38 @@ class TextFieldBlocBuilder extends StatefulWidget {
   /// If set, a character counter will be displayed below the
   /// field showing how many characters have been entered. If set to a number
   /// greater than 0, it will also display the maximum number allowed. If set
-  /// to [TextFieldBlocBuilder.noMaxLength] then only the current character count is displayed.
+  /// to [TextField.noMaxLength] then only the current character count is displayed.
   ///
   /// After [maxLength] characters have been input, additional input
-  /// is ignored, unless [maxLengthEnforced] is set to false. The text field
-  /// enforces the length with a [LengthLimitingTextInputFormatter], which is
-  /// evaluated after the supplied [inputFormatters], if any.
+  /// is ignored, unless [maxLengthEnforcement] is set to
+  /// [MaxLengthEnforcement.none].
   ///
-  /// This value must be either null, [TextFieldBlocBuilder.noMaxLength], or greater than 0.
+  /// The text field enforces the length with a [LengthLimitingTextInputFormatter],
+  /// which is evaluated after the supplied [inputFormatters], if any.
+  ///
+  /// This value must be either null, [TextField.noMaxLength], or greater than 0.
   /// If null (the default) then there is no limit to the number of characters
-  /// that can be entered. If set to [TextFieldBlocBuilder.noMaxLength], then no limit will
+  /// that can be entered. If set to [TextField.noMaxLength], then no limit will
   /// be enforced, but the number of characters entered will still be displayed.
   ///
   /// Whitespace characters (e.g. newline, space, tab) are included in the
   /// character count.
   ///
-  /// If [maxLengthEnforced] is set to false, then more than [maxLength]
-  /// characters may be entered, but the error counter and divider will
-  /// switch to the [decoration.errorStyle] when the limit is exceeded.
+  /// If [maxLengthEnforced] is set to false or [maxLengthEnforcement] is
+  /// [MaxLengthEnforcement.none], then more than [maxLength]
+  /// characters may be entered, but the error counter and divider will switch
+  /// to the [decoration]'s [InputDecoration.errorStyle] when the limit is
+  /// exceeded.
   ///
-  /// ## Limitations
-  ///
-  /// The text field does not currently count Unicode grapheme clusters (i.e.
-  /// characters visible to the user), it counts Unicode scalar values, which
-  /// leaves out a number of useful possible characters (like many emoji and
-  /// composed characters), so this will be inaccurate in the presence of those
-  /// characters. If you expect to encounter these kinds of characters, be
-  /// generous in the maxLength used.
-  ///
-  /// For instance, the character "ö" can be represented as '\u{006F}\u{0308}',
-  /// which is the letter "o" followed by a composed diaeresis "¨", or it can
-  /// be represented as '\u{00F6}', which is the Unicode scalar value "LATIN
-  /// SMALL LETTER O WITH DIAERESIS". In the first case, the text field will
-  /// count two characters, and the second case will be counted as one
-  /// character, even though the user can see no difference in the input.
-  ///
-  /// Similarly, some emoji are represented by multiple scalar values. The
-  /// Unicode "THUMBS UP SIGN + MEDIUM SKIN TONE MODIFIER", "👍🏽", should be
-  /// counted as a single character, but because it is a combination of two
-  /// Unicode scalar values, '\u{1F44D}\u{1F3FD}', it is counted as two
-  /// characters.
-  ///
-  /// See also:
-  ///
-  ///  * [LengthLimitingTextInputFormatter] for more information on how it
-  ///    counts characters, and how it may differ from the intuitive meaning.
+  /// {@macro flutter.services.lengthLimitingTextInputFormatter.maxLength}
   final int maxLength;
 
-  /// If true, prevents the field from allowing more than [maxLength]
-  /// characters.
+  /// Determines how the [maxLength] limit should be enforced.
   ///
-  /// If [maxLength] is set, [maxLengthEnforced] indicates whether or not to
-  /// enforce the limit, or merely provide a character counter and warning when
-  /// [maxLength] is exceeded.
-  final bool maxLengthEnforced;
+  /// {@macro flutter.services.textFormatter.effectiveMaxLengthEnforcement}
+  ///
+  /// {@macro flutter.services.textFormatter.maxLengthEnforcement}
+  final MaxLengthEnforcement maxLengthEnforcement;
 
   /// {@macro flutter.widgets.editableText.onChanged}
   ///
@@ -834,7 +809,9 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
           keyboardType: widget.keyboardType,
           textInputAction: widget.textInputAction != null
               ? widget.textInputAction
-              : widget.nextFocusNode != null ? TextInputAction.next : null,
+              : widget.nextFocusNode != null
+                  ? TextInputAction.next
+                  : null,
           textCapitalization: widget.textCapitalization,
           style: isEnabled
               ? widget.style
@@ -853,7 +830,7 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
           minLines: widget.minLines,
           maxLines: widget.maxLines,
           maxLength: widget.maxLength,
-          maxLengthEnforced: widget.maxLengthEnforced,
+          maxLengthEnforcement: widget.maxLengthEnforcement,
           onChanged: (value) {
             widget.textFieldBloc.updateValue(value);
             if (widget.onChanged != null) {
@@ -972,7 +949,9 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
         keyboardType: widget.keyboardType,
         textInputAction: widget.textInputAction != null
             ? widget.textInputAction
-            : widget.nextFocusNode != null ? TextInputAction.next : null,
+            : widget.nextFocusNode != null
+                ? TextInputAction.next
+                : null,
         textCapitalization: widget.textCapitalization,
         style: isEnabled
             ? widget.style
@@ -990,7 +969,7 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
         minLines: widget.minLines,
         maxLines: widget.maxLines,
         maxLength: widget.maxLength,
-        maxLengthEnforced: widget.maxLengthEnforced,
+        maxLengthEnforcement: widget.maxLengthEnforcement,
         onChanged: (value) {
           widget.textFieldBloc.updateValue(value);
           if (widget.onChanged != null) {

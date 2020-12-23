@@ -60,7 +60,7 @@ class SerializedForm extends StatelessWidget {
       create: (context) => SerializedFormBloc(),
       child: Builder(
         builder: (context) {
-          final formBloc = context.bloc<SerializedFormBloc>();
+          final formBloc = BlocProvider.of<SerializedFormBloc>(context);
 
           return Theme(
             data: Theme.of(context).copyWith(
@@ -79,7 +79,7 @@ class SerializedForm extends StatelessWidget {
               ),
               body: FormBlocListener<SerializedFormBloc, String, String>(
                 onSuccess: (context, state) {
-                  Scaffold.of(context).showSnackBar(SnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: Text(state.successResponse),
                     duration: Duration(seconds: 2),
                   ));

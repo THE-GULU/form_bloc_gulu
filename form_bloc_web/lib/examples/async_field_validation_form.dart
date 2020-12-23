@@ -68,7 +68,8 @@ class AsyncFieldValidationForm extends StatelessWidget {
       create: (context) => AsyncFieldValidationFormBloc(),
       child: Builder(
         builder: (context) {
-          final formBloc = context.bloc<AsyncFieldValidationFormBloc>();
+          final formBloc =
+              BlocProvider.of<AsyncFieldValidationFormBloc>(context);
 
           return Scaffold(
             resizeToAvoidBottomInset: false,
@@ -87,7 +88,7 @@ class AsyncFieldValidationForm extends StatelessWidget {
               onFailure: (context, state) {
                 LoadingDialog.hide(context);
 
-                Scaffold.of(context).showSnackBar(
+                ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.failureResponse)));
               },
               child: SingleChildScrollView(
