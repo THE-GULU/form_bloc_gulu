@@ -90,7 +90,7 @@ class FormBlocObserver extends BlocObserver {
   }
 
   @override
-  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
+  void onError(Cubit bloc, Object error, StackTrace stackTrace) {
     var notify = true;
 
     if ((bloc is SingleFieldBloc ||
