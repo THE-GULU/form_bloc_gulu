@@ -18,7 +18,7 @@ dependencies:
   mockito: ^4.1.4
   pedantic: ^1.10.0-nullsafety.3
   collection: ^1.15.0-nullsafety.5
-  uuid: ^3.0.0
+  uuid: ^2.0.0
 
 dev_dependencies:
   test: ^1.6.0
