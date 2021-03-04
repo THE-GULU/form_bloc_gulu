@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
     hide DropdownButton, DropdownMenuItem, DropdownButtonHideUnderline;
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_bloc/src/dropdown.dart';
 import 'package:flutter_form_bloc/src/utils/utils.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:form_bloc/form_bloc.dart';
 import 'package:rxdart/subjects.dart';
-import 'package:flutter/scheduler.dart';
 
 class DropdownFieldBlocBuilderMobile<Value> extends StatefulWidget {
   DropdownFieldBlocBuilderMobile({
@@ -111,9 +111,10 @@ class _DropdownFieldBlocBuilderMobileState<Value>
 
     _effectiveFocusNode.addListener(_onFocusRequest);
 
-    _isKeyboardVisible = KeyboardVisibility.isVisible;
+    _isKeyboardVisible = KeyboardVisibilityController().isVisible;
 
-    _keyboardSubscription = KeyboardVisibility.onChange.listen((bool visible) {
+    _keyboardSubscription =
+        KeyboardVisibilityController().onChange.listen((bool visible) {
       setState(() {
         _isKeyboardVisible = visible;
         print(_isKeyboardVisible);
@@ -145,7 +146,7 @@ class _DropdownFieldBlocBuilderMobileState<Value>
       focusNode: _effectiveFocusNode,
       child: BlocBuilder<SelectFieldBloc<Value, dynamic>,
           SelectFieldBlocState<Value, dynamic>>(
-        cubit: widget.selectFieldBloc,
+        bloc: widget.selectFieldBloc,
         builder: (context, fieldState) {
           final isEnabled = fieldBlocIsEnabled(
             isEnabled: widget.isEnabled,

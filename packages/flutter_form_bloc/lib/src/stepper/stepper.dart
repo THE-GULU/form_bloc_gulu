@@ -390,22 +390,24 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
         constraints: const BoxConstraints.tightFor(height: 48.0),
         child: Row(
           children: <Widget>[
-            FlatButton(
+            TextButton(
               onPressed: widget.onStepContinue,
-              color: _isDark()
-                  ? themeData.backgroundColor
-                  : themeData.primaryColor,
-              textColor: Colors.white,
-              textTheme: ButtonTextTheme.normal,
+              style: TextButton.styleFrom(
+                backgroundColor: _isDark()
+                    ? themeData.backgroundColor
+                    : themeData.primaryColor,
+                primary: Colors.white,
+              ),
               child: Text(localizations.continueButtonLabel),
             ),
             if (widget.currentStep != 0)
               Container(
                 margin: const EdgeInsetsDirectional.only(start: 8.0),
-                child: FlatButton(
+                child: TextButton(
                   onPressed: widget.onStepCancel,
-                  textColor: cancelColor,
-                  textTheme: ButtonTextTheme.normal,
+                  style: TextButton.styleFrom(
+                    primary: cancelColor,
+                  ),
                   child: Text(localizations.cancelButtonLabel),
                 ),
               ),
