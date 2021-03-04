@@ -21,7 +21,7 @@ dependencies:
       url: https://github.com/aaassseee/form_bloc.git
       ref: personal_usage
       path: packages/form_bloc
-  rxdart: ^0.25.0
+  rxdart: ^0.26.0
   flutter_keyboard_visibility: ^4.0.2
   collection: ^1.15.0-nullsafety.5
   intl: ^0.17.0-nullsafety.2
