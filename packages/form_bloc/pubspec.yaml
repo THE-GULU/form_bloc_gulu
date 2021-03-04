@@ -10,12 +10,12 @@ environment:
 
 dependencies:
   meta: ^1.3.0-nullsafety.6
-  bloc: ^6.1.1
-  bloc_test: ^7.1.0
+  bloc: ^7.0.0-nullsafety.3
+  bloc_test: ^8.0.0-nullsafety.1
   rxdart: ^0.25.0
-  equatable: ^1.2.5
+  equatable: ^1.2.6
   quiver: ^2.1.5
-  mockito: ^4.1.3
+  mockito: ^4.1.4
   pedantic: ^1.10.0-nullsafety.3
   collection: ^1.15.0-nullsafety.5
   uuid: ^2.2.2

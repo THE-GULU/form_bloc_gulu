@@ -71,25 +71,6 @@ class FormBlocObserver extends BlocObserver {
   }
 
   @override
-  void onChange(Cubit cubit, Change change) {
-    var notify = true;
-
-    if ((cubit is SingleFieldBloc ||
-            cubit is GroupFieldBloc ||
-            cubit is ListFieldBloc) &&
-        !notifyOnFieldBlocTransition) {
-      notify = false;
-    } else if (cubit is FormBloc && !notifyOnFormBlocTransition) {
-      notify = false;
-    }
-
-    if (notify) {
-      _oldBlocObserver.onChange(cubit, change);
-      super.onChange(cubit, change);
-    }
-  }
-
-  @override
   void onTransition(Bloc bloc, Transition transition) {
     var notify = true;
 
@@ -109,21 +90,21 @@ class FormBlocObserver extends BlocObserver {
   }
 
   @override
-  void onError(Cubit cubit, Object error, StackTrace stacktrace) {
+  void onError(Bloc bloc, Object error, StackTrace stackTrace) {
     var notify = true;
 
-    if ((cubit is SingleFieldBloc ||
-            cubit is GroupFieldBloc ||
-            cubit is ListFieldBloc) &&
+    if ((bloc is SingleFieldBloc ||
+            bloc is GroupFieldBloc ||
+            bloc is ListFieldBloc) &&
         !notifyOnFieldBlocError) {
       notify = false;
-    } else if (cubit is FormBloc && !notifyOnFormBlocError) {
+    } else if (bloc is FormBloc && !notifyOnFormBlocError) {
       notify = false;
     }
 
     if (notify) {
-      _oldBlocObserver.onError(cubit, error, stacktrace);
-      super.onError(cubit, error, stacktrace);
+      _oldBlocObserver.onError(bloc, error, stackTrace);
+      super.onError(bloc, error, stackTrace);
     }
   }
 
