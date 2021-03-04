@@ -13,7 +13,7 @@ dependencies:
   bloc: ^6.1.2
   bloc_test: ^7.1.0
   rxdart: ^0.25.0
-  equatable: ^2.0.0
+  equatable: ^1.2.6
   quiver: ^2.1.5
   mockito: ^4.1.4
   pedantic: ^1.10.0-nullsafety.3
