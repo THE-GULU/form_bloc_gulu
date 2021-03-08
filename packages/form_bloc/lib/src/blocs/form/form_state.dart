@@ -72,6 +72,23 @@ abstract class FormBlocState<SuccessResponse, FailureResponse>
     return invalidSteps.isNotEmpty ? invalidSteps.first : null;
   }
 
+  bool isFieldBlocsInitial([int step]) {
+    if (step == null) {
+      return _fieldBlocsStates.values
+          .cast<FieldBlocState>()
+          ?.every((state) => state.isInitial);
+    } else {
+      if (_fieldBlocsStatesByStepMap.containsKey(step)) {
+        return _fieldBlocsStatesByStepMap[step]
+            .values
+            .cast<FieldBlocState>()
+            ?.every((state) => state.isInitial);
+      } else {
+        return true;
+      }
+    }
+  }
+
   /// Map containing all the [name]s.
   ///
   /// The `key` of each [FieldBloc] will be
@@ -679,8 +696,11 @@ class FormBlocLoading<SuccessResponse, FailureResponse>
     Map<int, Map<String, FieldBloc>> fieldBlocs,
     int currentStep,
     @required double progress,
-  })  : progress =
-            (progress ?? 0.0) < 0.0 ? 0.0 : progress > 1.0 ? 1.0 : progress,
+  })  : progress = (progress ?? 0.0) < 0.0
+            ? 0.0
+            : progress > 1.0
+                ? 1.0
+                : progress,
         super(
           isValidByStep: isValidByStep,
           isEditing: isEditing,
@@ -804,8 +824,11 @@ class FormBlocSubmitting<SuccessResponse, FailureResponse>
     int currentStep,
   })  : assert(progress != null),
         assert(isCanceling != null),
-        progress =
-            (progress ?? 0.0) < 0.0 ? 0.0 : progress > 1.0 ? 1.0 : progress,
+        progress = (progress ?? 0.0) < 0.0
+            ? 0.0
+            : progress > 1.0
+                ? 1.0
+                : progress,
         super(
           isValidByStep: isValidByStep,
           isEditing: isEditing,
@@ -998,7 +1021,9 @@ class FormBlocDeleting<SuccessResponse, FailureResponse>
     @required double deletingProgress,
   })  : progress = (deletingProgress ?? 0.0) < 0.0
             ? 0.0
-            : deletingProgress > 1.0 ? 1.0 : deletingProgress,
+            : deletingProgress > 1.0
+                ? 1.0
+                : deletingProgress,
         super(
           isValidByStep: isValidByStep,
           isEditing: isEditing,
@@ -1129,8 +1154,11 @@ class FormBlocUpdatingFields<SuccessResponse, FailureResponse>
     Map<int, Map<String, FieldBloc>> fieldBlocs,
     int currentStep,
     @required double progress,
-  })  : progress =
-            (progress ?? 0.0) < 0.0 ? 0.0 : progress > 1.0 ? 1.0 : progress,
+  })  : progress = (progress ?? 0.0) < 0.0
+            ? 0.0
+            : progress > 1.0
+                ? 1.0
+                : progress,
         super(
           isValidByStep: isValidByStep,
           isEditing: isEditing,
