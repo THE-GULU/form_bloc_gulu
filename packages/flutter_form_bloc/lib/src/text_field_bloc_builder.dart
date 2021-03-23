@@ -147,6 +147,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
         ),
       ),
     ),
+    this.autofillHints,
   })  : assert(enableOnlyWhenFormBlocCanSubmit != null),
         assert(obscureTextTrueIcon != null),
         assert(obscureTextFalseIcon != null),
@@ -604,6 +605,10 @@ class TextFieldBlocBuilder extends StatefulWidget {
   /// {@macro flutter.widgets.editableText.scrollController}
   final ScrollController scrollController;
 
+  /// {@macro flutter.widgets.editableText.autofillHints}
+  /// {@macro flutter.services.AutofillConfiguration.autofillHints}
+  final Iterable<String> autofillHints;
+
   /// {@template flutter_form_bloc.FieldBlocBuilder.animateWhenCanShow}
   /// Set to `true` if you want animate size/fade, when the
   /// field bloc is added and removed from form bloc.
@@ -999,6 +1004,7 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
         textAlignVertical: widget.textAlignVertical,
         toolbarOptions: widget.toolbarOptions,
         onTap: widget.onTap,
+        autofillHints: widget.autofillHints,
       ),
     );
   }
