@@ -14,7 +14,7 @@ class MyBlocObserver extends BlocObserver {
   }
 
   @override
-  void onError(Cubit bloc, Object error, StackTrace stackTrace) {
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
     _printWrapped('bloc: ${bloc.runtimeType}, error: $error');
   }

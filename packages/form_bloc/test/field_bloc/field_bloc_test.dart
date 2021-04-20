@@ -1355,7 +1355,7 @@ void main() {
       final fieldBloc = InputFieldBloc<int, int>();
 
       expect(
-        fieldBloc.map((state) => state.extraData),
+        fieldBloc..stream.map((state) => state.extraData),
         emitsInOrder(expected),
       );
 
