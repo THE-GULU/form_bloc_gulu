@@ -12,7 +12,11 @@ dependencies:
 #    path: ../packages/form_bloc
 #  flutter_form_bloc:
 #    path: ../packages/flutter_form_bloc
-  flutter_form_bloc: ^0.30.1
+#  flutter_form_bloc: ^0.30.1
+  flutter_form_bloc:
+    git:
+      url: https://github.com/aaassseee/form_bloc.git
+      path: packages/flutter_form_bloc
   animations: ^2.0.2
   flutter_syntax_view: ^4.0.0
   flash: ^1.5.2
