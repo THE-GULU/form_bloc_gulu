@@ -15,7 +15,7 @@ class CanShowFieldBlocBuilder extends StatefulWidget {
   final Widget Function(BuildContext context, bool canShow) builder;
 
   @override
-  _CanShowFieldBlocBuilderState createState() =>
+  State<CanShowFieldBlocBuilder> createState() =>
       _CanShowFieldBlocBuilderState();
 }
 

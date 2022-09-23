@@ -107,7 +107,7 @@ class DateTimeFieldBlocBuilderBase<T> extends StatefulWidget {
   final TimeOfDay initialTime;
 
   @override
-  _DateTimeFieldBlocBuilderBaseState createState() =>
+  State<DateTimeFieldBlocBuilderBase<T>> createState() =>
       _DateTimeFieldBlocBuilderBaseState();
 
   DateTimeFieldTheme themeStyleOf(BuildContext context) {
@@ -171,6 +171,7 @@ class _DateTimeFieldBlocBuilderBaseState<T>
       final date = await _showDatePicker(context);
 
       if (date != null) {
+        if (!mounted) return;
         final time = await _showTimePicker(context);
         result = _combine(date, time);
       }

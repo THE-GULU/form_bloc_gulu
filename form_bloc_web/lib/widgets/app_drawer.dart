@@ -1,9 +1,8 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-
 import 'package:form_bloc_web/constants/style.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../routes.dart';
 
@@ -250,8 +249,8 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
 
   _launchGitHubURL() async {
     const url = 'https://github.com/GiancarloCode/form_bloc';
-    if (await canLaunch(url)) {
-      await launch(url);
+    if (await canLaunchUrlString(url)) {
+      await launchUrlString(url);
     }
   }
 

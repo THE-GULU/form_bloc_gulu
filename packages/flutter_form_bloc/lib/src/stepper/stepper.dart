@@ -488,7 +488,7 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
               child: TextButton(
                 onPressed: widget.onStepCancel,
                 style: TextButton.styleFrom(
-                  primary: cancelColor,
+                  foregroundColor: cancelColor,
                   padding: buttonPadding,
                   shape: buttonShape,
                 ),
@@ -735,8 +735,8 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
                 curve: Curves.fastOutSlowIn,
                 duration: kThemeAnimationDuration,
                 child: Column(
-                    children: stepPanels,
-                    crossAxisAlignment: CrossAxisAlignment.stretch),
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: stepPanels),
               ),
               _buildVerticalControls(widget.currentStep),
             ],

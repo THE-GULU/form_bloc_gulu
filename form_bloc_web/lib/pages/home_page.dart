@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:form_bloc_web/constants/style.dart';
 import 'package:form_bloc_web/routes.dart';
 import 'package:form_bloc_web/widgets/app_scaffold.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                     style: TextButton.styleFrom(
-                      primary: Colors.black38,
+                      foregroundColor: Colors.black38,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         side: const BorderSide(
@@ -106,8 +106,8 @@ class HomePage extends StatelessWidget {
         ),
       ),
       onTap: () async {
-        if (await canLaunch(url!)) {
-          await launch(url);
+        if (await canLaunchUrlString(url!)) {
+          await launchUrlString(url);
         }
       },
     );

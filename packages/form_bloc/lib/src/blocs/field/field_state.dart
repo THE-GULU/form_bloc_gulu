@@ -151,25 +151,25 @@ abstract class FieldBlocState<Value, Suggestion, ExtraData> extends Equatable
 
   @override
   String toString([String extra = '']) {
-    var _toString = '';
+    var string = '';
 
-    _toString += '$runtimeType {';
-    _toString += '\n  name: $name';
-    _toString += ',\n  isValueChanged: $isValueChanged';
-    _toString += ',\n  updatedValue: $updatedValue';
-    _toString += ',\n  initialValue: $initialValue';
-    _toString += ',\n  value: $value';
-    _toString += ',\n  error: $error';
-    _toString += ',\n  isDirty: $isDirty';
-    _toString += ',\n  isValidated: $isValidated';
-    _toString += ',\n  isValidating: $isValidating';
-    _toString += ',\n  isValid: $isValid';
-    _toString += ',\n  extraData: $extraData';
-    _toString += extra;
-    _toString += ',\n  formBloc: $formBloc';
-    _toString += '\n}';
+    string += '$runtimeType {';
+    string += '\n  name: $name';
+    string += ',\n  isValueChanged: $isValueChanged';
+    string += ',\n  updatedValue: $updatedValue';
+    string += ',\n  initialValue: $initialValue';
+    string += ',\n  value: $value';
+    string += ',\n  error: $error';
+    string += ',\n  isDirty: $isDirty';
+    string += ',\n  isValidated: $isValidated';
+    string += ',\n  isValidating: $isValidating';
+    string += ',\n  isValid: $isValid';
+    string += ',\n  extraData: $extraData';
+    string += extra;
+    string += ',\n  formBloc: $formBloc';
+    string += '\n}';
 
-    return _toString;
+    return string;
   }
 
   @override

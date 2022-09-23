@@ -590,7 +590,7 @@ class TypeAheadField<T> extends StatefulWidget {
         super(key: key);
 
   @override
-  _TypeAheadFieldState<T> createState() => _TypeAheadFieldState<T>();
+  State<TypeAheadField<T>> createState() => _TypeAheadFieldState<T>();
 }
 
 /// In flutter3.0 WidgetsBinding and SchedulerBinding are now non-nullable.
@@ -1255,7 +1255,6 @@ class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
       }
 
       return InkWell(
-        child: widget.itemBuilder!(context, suggestion),
         borderRadius: borderRadius,
         onLongPress: widget.onSuggestionRemoved == null ||
                 !widget.removeSuggestionOnLongPress
@@ -1276,6 +1275,7 @@ class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
         onTap: () {
           widget.onSuggestionSelected!(suggestion);
         },
+        child: widget.itemBuilder!(context, suggestion),
       );
     }
 
