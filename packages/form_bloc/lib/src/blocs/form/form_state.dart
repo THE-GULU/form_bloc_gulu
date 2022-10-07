@@ -28,7 +28,9 @@ abstract class FormBlocState<SuccessResponse, FailureResponse>
 
   @Deprecated(
       'In favour of [FormBloc.hasInitialValues] or [FormBloc.isValuesChanged].')
-  bool isInitial([int? step]) {
+  bool isInitial([int? step]) => hasInitialValues(step);
+
+  bool hasInitialValues([int? step]) {
     return FormBlocUtils.hasInitialValues(flatFieldBlocs(step) ?? const []);
   }
 
