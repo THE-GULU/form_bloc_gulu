@@ -607,6 +607,7 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
 
   TextEditingController? get _effectiveController =>
       widget.textFieldConfiguration.controller ?? _textEditingController;
+
   FocusNode? get _effectiveFocusNode =>
       widget.textFieldConfiguration.focusNode ?? _focusNode;
   late VoidCallback _focusNodeListener;
@@ -615,6 +616,7 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
 
   // Timer that resizes the suggestion box on each tick. Only active when the user is scrolling.
   Timer? _resizeOnScrollTimer;
+
   // The rate at which the suggestion box will resize when the user is scrolling
   final Duration _resizeOnScrollRefreshRate = const Duration(milliseconds: 500);
 
@@ -656,6 +658,7 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
 
   late final KeyboardVisibilityController keyboardVisibilityController;
   late final bool isWebMobile;
+
   @override
   void initState() {
     super.initState();
@@ -708,7 +711,7 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
           this._suggestionsBox?.open();
         }
 
-        ScrollableState? scrollableState = Scrollable.of(context);
+        ScrollableState? scrollableState = Scrollable.maybeOf(context);
         if (scrollableState != null) {
           // The TypeAheadField is inside a scrollable widget
           scrollableState.position.isScrollingNotifier.addListener(() {
@@ -1287,9 +1290,9 @@ class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
 
       initialItemCount: suggestions.length,
 
-      reverse: widget.suggestionsBox!.direction == AxisDirection.down
-          ? false
-          : true, // reverses the list to start at the bottom
+      reverse:
+          widget.suggestionsBox!.direction == AxisDirection.down ? false : true,
+      // reverses the list to start at the bottom
 
       itemBuilder: buildItem,
     );
@@ -1693,7 +1696,7 @@ class _SuggestionsBox {
   void open() {
     if (this._isOpened) return;
     assert(this._overlayEntry != null);
-    Overlay.of(context)!.insert(this._overlayEntry!);
+    Overlay.of(context).insert(this._overlayEntry!);
     this._isOpened = true;
   }
 
