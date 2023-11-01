@@ -139,7 +139,7 @@ class RadioButtonGroupFieldBlocBuilder<Value> extends StatelessWidget {
 
               return DefaultFieldBlocBuilderPadding(
                 padding: padding,
-                child: GroupInputDecorator(
+                child: InputDecorator(
                   decoration:
                       _buildDecoration(context, fieldTheme, state, isEnabled),
                   child:
@@ -167,10 +167,6 @@ class RadioButtonGroupFieldBlocBuilder<Value> extends StatelessWidget {
       ),
       child: GroupView(
         style: groupStyle,
-        padding: Style.getGroupFieldBlocContentPadding(
-          isVisible: true,
-          decoration: decoration,
-        ),
         count: state.items.length,
         builder: (context, index) {
           final item = state.items[index];

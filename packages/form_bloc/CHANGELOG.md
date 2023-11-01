@@ -1,3 +1,7 @@
+# 0.30.4
+
+- updated dependencies
+
 # 0.30.3
 
 - migrate to Flutter 3
