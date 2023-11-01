@@ -133,7 +133,6 @@ class AllFieldsForm extends StatelessWidget {
                           selectFieldBloc: formBloc.select2,
                           decoration: const InputDecoration(
                             labelText: 'RadioButtonGroupFieldBlocBuilder',
-                            prefixIcon: SizedBox(),
                           ),
                           itemBuilder: (context, item) => FieldItem(
                             child: Text(item),
@@ -146,7 +145,6 @@ class AllFieldsForm extends StatelessWidget {
                           ),
                           decoration: const InputDecoration(
                             labelText: 'CheckboxGroupFieldBlocBuilder',
-                            prefixIcon: SizedBox(),
                           ),
                         ),
                         DateTimeFieldBlocBuilder(

@@ -147,7 +147,7 @@ class CheckboxGroupFieldBlocBuilder<Value> extends StatelessWidget {
 
               return DefaultFieldBlocBuilderPadding(
                 padding: padding,
-                child: GroupInputDecorator(
+                child: InputDecorator(
                   decoration:
                       _buildDecoration(context, state, isEnabled, fieldTheme),
                   child:
