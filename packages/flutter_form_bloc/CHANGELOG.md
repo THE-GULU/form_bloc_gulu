@@ -1,5 +1,10 @@
 # 0.30.5
 
+- updated flutter version
+- fixed flutter analyser error
+
+# 0.30.5
+
 - updated dependencies
 
 # 0.30.4

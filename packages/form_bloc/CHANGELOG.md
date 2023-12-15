@@ -1,3 +1,7 @@
+# 0.30.5
+
+- updated flutter version
+
 # 0.30.4
 
 - updated dependencies
