@@ -1,21 +1,17 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:form_bloc/form_bloc.dart' as form_bloc;
+import 'package:form_bloc/form_bloc.dart';
 
 typedef FormBlocListenerCallback<
-        FormBlocState extends form_bloc
-            .FormBlocState<SuccessResponse, ErrorResponse>,
+        State extends FormBlocState<SuccessResponse, ErrorResponse>,
         SuccessResponse,
         ErrorResponse>
-    = void Function(BuildContext context, FormBlocState state);
+    = void Function(BuildContext context, State state);
 
 /// [BlocListener] that reacts to the state changes of the FormBloc.
-class FormBlocListener<
-        FormBloc extends form_bloc.FormBloc<SuccessResponse, ErrorResponse>,
-        SuccessResponse,
-        ErrorResponse>
-    extends BlocListener<FormBloc,
-        form_bloc.FormBlocState<SuccessResponse, ErrorResponse>> {
+class FormBlocListener<Bloc extends FormBloc<SuccessResponse, ErrorResponse>,
+        SuccessResponse, ErrorResponse>
+    extends BlocListener<Bloc, FormBlocState<SuccessResponse, ErrorResponse>> {
   /// [BlocListener] that reacts to the state changes of the FormBloc.
   /// {@macro bloclistener}
   FormBlocListener({
@@ -36,121 +32,116 @@ class FormBlocListener<
   }) : super(
           key: key,
           child: child,
-          bloc: formBloc,
+          bloc: formBloc as Bloc,
           listenWhen: (previousState, state) =>
               previousState.runtimeType != state.runtimeType,
           listener: (context, state) {
-            if (state is form_bloc
-                    .FormBlocLoading<SuccessResponse, ErrorResponse> &&
+            if (state is FormBlocLoading<SuccessResponse, ErrorResponse> &&
                 onLoading != null) {
               onLoading(context, state);
-            } else if (state is form_bloc
-                    .FormBlocLoaded<SuccessResponse, ErrorResponse> &&
+            } else if (state is FormBlocLoaded<SuccessResponse, ErrorResponse> &&
                 onLoaded != null) {
               onLoaded(context, state);
-            } else if (state is form_bloc
-                    .FormBlocLoadFailed<SuccessResponse, ErrorResponse> &&
+            } else if (state
+                    is FormBlocLoadFailed<SuccessResponse, ErrorResponse> &&
                 onLoadFailed != null) {
               onLoadFailed(context, state);
-            } else if (state is form_bloc
-                    .FormBlocSubmitting<SuccessResponse, ErrorResponse> &&
+            } else if (state
+                    is FormBlocSubmitting<SuccessResponse, ErrorResponse> &&
                 onSubmitting != null) {
               onSubmitting(context, state);
-            } else if (state is form_bloc
-                    .FormBlocSuccess<SuccessResponse, ErrorResponse> &&
+            } else if (state is FormBlocSuccess<SuccessResponse, ErrorResponse> &&
                 onSuccess != null) {
               onSuccess(context, state);
-            } else if (state is form_bloc
-                    .FormBlocFailure<SuccessResponse, ErrorResponse> &&
+            } else if (state
+                    is FormBlocFailure<SuccessResponse, ErrorResponse> &&
                 onFailure != null) {
               onFailure(context, state);
-            } else if (state is form_bloc.FormBlocSubmissionCancelled<
-                    SuccessResponse, ErrorResponse> &&
+            } else if (state is FormBlocSubmissionCancelled<SuccessResponse,
+                    ErrorResponse> &&
                 onSubmissionCancelled != null) {
               onSubmissionCancelled(context, state);
-            } else if (state is form_bloc
-                    .FormBlocSubmissionFailed<SuccessResponse, ErrorResponse> &&
+            } else if (state is FormBlocSubmissionFailed<SuccessResponse,
+                    ErrorResponse> &&
                 onSubmissionFailed != null) {
               onSubmissionFailed(context, state);
-            } else if (state is form_bloc
-                    .FormBlocDeleting<SuccessResponse, ErrorResponse> &&
+            } else if (state
+                    is FormBlocDeleting<SuccessResponse, ErrorResponse> &&
                 onDeleting != null) {
               onDeleting(context, state);
-            } else if (state is form_bloc
-                    .FormBlocDeleteFailed<SuccessResponse, ErrorResponse> &&
+            } else if (state
+                    is FormBlocDeleteFailed<SuccessResponse, ErrorResponse> &&
                 onDeleteFailed != null) {
               onDeleteFailed(context, state);
-            } else if (state is form_bloc
-                    .FormBlocDeleteSuccessful<SuccessResponse, ErrorResponse> &&
+            } else if (state
+                    is FormBlocDeleteSuccessful<SuccessResponse, ErrorResponse> &&
                 onDeleteSuccessful != null) {
               onDeleteSuccessful(context, state);
             }
           },
         );
 
-  /// {@macro form_bloc.form_state.FormBlocLoading}
+  /// {@macro form_state.FormBlocLoading}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocLoading<SuccessResponse, ErrorResponse>,
+      FormBlocLoading<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onLoading;
 
-  /// {@macro form_bloc.form_state.FormBlocLoaded}
-  final FormBlocListenerCallback<
-      form_bloc.FormBlocLoaded<SuccessResponse, ErrorResponse>,
-      SuccessResponse,
-      ErrorResponse>? onLoaded;
+  /// {@macro form_state.FormBlocLoaded}
+  final FormBlocListenerCallback<FormBlocLoaded<SuccessResponse, ErrorResponse>,
+      SuccessResponse, ErrorResponse>? onLoaded;
 
-  /// {@macro form_bloc.form_state.FormBlocLoadFailed}
+  /// {@macro form_state.FormBlocLoadFailed}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocLoadFailed<SuccessResponse, ErrorResponse>,
+      FormBlocLoadFailed<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onLoadFailed;
 
-  /// {@macro form_bloc.form_state.FormBlocSubmitting}
+  /// {@macro form_state.FormBlocSubmitting}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocSubmitting<SuccessResponse, ErrorResponse>,
+      FormBlocSubmitting<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onSubmitting;
 
-  /// {@macro form_bloc.form_state.FormBlocSuccess}
+  /// {@macro form_state.FormBlocSuccess}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocSuccess<SuccessResponse, ErrorResponse>,
+      FormBlocSuccess<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onSuccess;
 
-  /// {@macro form_bloc.form_state.FormBlocFailure}
+  /// {@macro form_state.FormBlocFailure}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocFailure<SuccessResponse, ErrorResponse>,
+      FormBlocFailure<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onFailure;
 
-  /// {@macro form_bloc.form_state.FormBlocSubmissionCancelled}
+  /// {@macro form_state.FormBlocSubmissionCancelled}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocSubmissionCancelled<SuccessResponse, ErrorResponse>,
+      FormBlocSubmissionCancelled<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onSubmissionCancelled;
 
-  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  /// {@macro form_state.FormBlocSubmissionFailed}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocSubmissionFailed<SuccessResponse, ErrorResponse>,
+      FormBlocSubmissionFailed<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onSubmissionFailed;
 
-  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  /// {@macro form_state.FormBlocSubmissionFailed}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocDeleting<SuccessResponse, ErrorResponse>,
+      FormBlocDeleting<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onDeleting;
 
-  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  /// {@macro form_state.FormBlocSubmissionFailed}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocDeleteFailed<SuccessResponse, ErrorResponse>,
+      FormBlocDeleteFailed<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onDeleteFailed;
 
-  /// {@macro form_bloc.form_state.FormBlocSubmissionFailed}
+  /// {@macro form_state.FormBlocSubmissionFailed}
   final FormBlocListenerCallback<
-      form_bloc.FormBlocDeleteSuccessful<SuccessResponse, ErrorResponse>,
+      FormBlocDeleteSuccessful<SuccessResponse, ErrorResponse>,
       SuccessResponse,
       ErrorResponse>? onDeleteSuccessful;
 
