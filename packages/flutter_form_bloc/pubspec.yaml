@@ -6,7 +6,7 @@ repository: https://github.com/GiancarloCode/form_bloc/tree/master/packages/flut
 issue_tracker: https://github.com/GiancarloCode/form_bloc/issues
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -18,7 +18,7 @@ dependencies:
   #  form_bloc: ^0.30.0
   form_bloc:
     git:
-      url: https://github.com/aaassseee/form_bloc.git
+      url: https://github.com/THE-GULU/form_bloc.git
       path: packages/form_bloc
   equatable: ">=2.0.5 <3.0.0"
   rxdart: ">=0.27.5 <1.0.0"
