@@ -15,9 +15,9 @@ class FormBlocListener<Bloc extends FormBloc<SuccessResponse, ErrorResponse>,
   /// [BlocListener] that reacts to the state changes of the FormBloc.
   /// {@macro bloclistener}
   FormBlocListener({
-    Key? key,
+    super.key,
     this.formBloc,
-    Widget? child,
+    super.child,
     this.onLoading,
     this.onLoaded,
     this.onLoadFailed,
@@ -30,9 +30,7 @@ class FormBlocListener<Bloc extends FormBloc<SuccessResponse, ErrorResponse>,
     this.onDeleteFailed,
     this.onDeleteSuccessful,
   }) : super(
-          key: key,
-          child: child,
-          bloc: formBloc as Bloc,
+          bloc: formBloc,
           listenWhen: (previousState, state) =>
               previousState.runtimeType != state.runtimeType,
           listener: (context, state) {
@@ -148,7 +146,7 @@ class FormBlocListener<Bloc extends FormBloc<SuccessResponse, ErrorResponse>,
   /// If the [formBloc] parameter is omitted, [FormBlocListener]
   /// will automatically perform a lookup using
   /// [BlocProvider].of<[FormBloc]> and the current [BuildContext].
-  final FormBloc? formBloc;
+  final Bloc? formBloc;
 
   /// The [Widget] which will be rendered as a descendant of the [BlocListener].
   @override
