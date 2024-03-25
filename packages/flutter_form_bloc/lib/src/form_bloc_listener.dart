@@ -30,7 +30,7 @@ class FormBlocListener<Bloc extends FormBloc<SuccessResponse, ErrorResponse>,
     this.onDeleteFailed,
     this.onDeleteSuccessful,
   }) : super(
-          bloc: formBloc as Bloc,
+          bloc: formBloc,
           listenWhen: (previousState, state) =>
               previousState.runtimeType != state.runtimeType,
           listener: (context, state) {
