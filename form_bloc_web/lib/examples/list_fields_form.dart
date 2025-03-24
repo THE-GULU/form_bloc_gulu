@@ -6,7 +6,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -105,8 +105,8 @@ class MemberFieldBloc extends GroupFieldBloc {
     required this.firstName,
     required this.lastName,
     required this.hobbies,
-    String? name,
-  }) : super(name: name, fieldBlocs: [firstName, lastName, hobbies]);
+    super.name,
+  }) : super(fieldBlocs: [firstName, lastName, hobbies]);
 }
 
 class Club {
@@ -171,7 +171,7 @@ class Member {
 }
 
 class ListFieldsForm extends StatelessWidget {
-  const ListFieldsForm({Key? key}) : super(key: key);
+  const ListFieldsForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -289,13 +289,13 @@ class MemberCard extends StatelessWidget {
   final VoidCallback onClearHobby;
 
   const MemberCard({
-    Key? key,
+    super.key,
     required this.memberIndex,
     required this.memberField,
     required this.onRemoveMember,
     required this.onAddHobby,
     required this.onClearHobby,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -401,12 +401,12 @@ class LoadingDialog extends StatelessWidget {
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
-  const LoadingDialog({Key? key}) : super(key: key);
+  const LoadingDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Center(
         child: Card(
           child: Container(
@@ -422,7 +422,7 @@ class LoadingDialog extends StatelessWidget {
 }
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

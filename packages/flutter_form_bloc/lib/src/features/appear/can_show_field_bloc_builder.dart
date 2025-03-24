@@ -4,11 +4,11 @@ import 'package:form_bloc/form_bloc.dart';
 
 class CanShowFieldBlocBuilder extends StatefulWidget {
   const CanShowFieldBlocBuilder({
-    Key? key,
+    super.key,
     required this.fieldBloc,
     required this.builder,
     this.animate = true,
-  }) : super(key: key);
+  });
 
   final FieldBloc fieldBloc;
   final bool animate;

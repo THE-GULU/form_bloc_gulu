@@ -3,14 +3,15 @@ import 'package:form_bloc_web/examples/conditional_fields_form.dart';
 import 'package:form_bloc_web/widgets/widgets.dart';
 
 class ConditionalFieldsExamplePage extends StatelessWidget {
-  const ConditionalFieldsExamplePage({Key? key}) : super(key: key);
+  const ConditionalFieldsExamplePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ExampleScaffold(
       title: 'Conditional Fields',
       demo: const DeviceScreen(app: ConditionalFieldsForm()),
-      code: const CodeScreen(codePath: 'lib/examples/conditional_fields_form.dart'),
+      code: const CodeScreen(
+          codePath: 'lib/examples/conditional_fields_form.dart'),
       tutorial: TutorialScreen(
         children: <Widget>[
           const TutorialText('''

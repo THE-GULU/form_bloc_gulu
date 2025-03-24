@@ -12,13 +12,13 @@ class ClearSuffixButton extends StatelessWidget {
   final Widget? icon;
 
   const ClearSuffixButton({
-    Key? key,
+    super.key,
     required this.singleFieldBloc,
     this.visibleWithoutValue,
     this.appearDuration,
     this.isEnabled = true,
     this.icon,
-  }) : super(key: key);
+  });
 
   ClearSuffixButtonTheme themeOf(BuildContext context) {
     final buttonTheme = FormTheme.of(context).clearSuffixButtonTheme;
@@ -26,9 +26,10 @@ class ClearSuffixButton extends StatelessWidget {
     return ClearSuffixButtonTheme(
       visibleWithoutValue:
           visibleWithoutValue ?? buttonTheme.visibleWithoutValue ?? false,
-      appearDuration:
-          appearDuration ?? buttonTheme.appearDuration ?? const Duration(milliseconds: 300),
-      icon: icon ?? buttonTheme.icon ?? const  Icon(Icons.clear),
+      appearDuration: appearDuration ??
+          buttonTheme.appearDuration ??
+          const Duration(milliseconds: 300),
+      icon: icon ?? buttonTheme.icon ?? const Icon(Icons.clear),
     );
   }
 

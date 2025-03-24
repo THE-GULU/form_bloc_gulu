@@ -14,7 +14,7 @@ dependencies:
   #    path: ../packages/flutter_form_bloc
   flutter_form_bloc:
     git:
-      url: https://github.com/aaassseee/form_bloc.git
+      url: https://github.com/THE-GULU/form_bloc_gulu.git
       path: packages/flutter_form_bloc
   animations: ">=2.0.2 <3.0.0"
   flutter_syntax_view: ">=4.0.0 <5.0.0"

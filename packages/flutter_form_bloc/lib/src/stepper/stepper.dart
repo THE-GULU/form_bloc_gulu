@@ -139,7 +139,7 @@ class Stepper extends StatefulWidget {
   ///
   /// The [steps], [type], and [currentStep] arguments must not be null.
   const Stepper({
-    Key? key,
+    super.key,
     required this.steps,
     this.physics,
     this.type = StepperType.vertical,
@@ -151,8 +151,7 @@ class Stepper extends StatefulWidget {
     this.controlsBuilder,
     this.elevation,
     this.margin,
-  })  : assert(0 <= currentStep && currentStep < steps.length),
-        super(key: key);
+  }) : assert(0 <= currentStep && currentStep < steps.length);
 
   /// The steps of the stepper whose titles, subtitles, icons always get shown.
   ///
@@ -509,12 +508,12 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
       case StepState.indexed:
       case StepState.editing:
       case StepState.complete:
-        return textTheme.bodyText1;
+        return textTheme.bodyLarge;
       case StepState.disabled:
-        return textTheme.bodyText1!
+        return textTheme.bodyLarge!
             .copyWith(color: _isDark() ? _kDisabledDark : _kDisabledLight);
       case StepState.error:
-        return textTheme.bodyText1!
+        return textTheme.bodyLarge!
             .copyWith(color: _isDark() ? _kErrorDark : _kErrorLight);
     }
   }
@@ -526,12 +525,12 @@ class _StepperState extends State<Stepper> with TickerProviderStateMixin {
       case StepState.indexed:
       case StepState.editing:
       case StepState.complete:
-        return textTheme.caption;
+        return textTheme.bodySmall;
       case StepState.disabled:
-        return textTheme.caption!
+        return textTheme.bodySmall!
             .copyWith(color: _isDark() ? _kDisabledDark : _kDisabledLight);
       case StepState.error:
-        return textTheme.caption!
+        return textTheme.bodySmall!
             .copyWith(color: _isDark() ? _kErrorDark : _kErrorLight);
     }
   }

@@ -3,15 +3,15 @@ import 'package:form_bloc_web/examples/async_field_validation_form.dart';
 import 'package:form_bloc_web/widgets/widgets.dart';
 
 class AsyncFieldValidationExamplePage extends StatelessWidget {
-  const AsyncFieldValidationExamplePage({Key? key}) : super(key: key);
+  const AsyncFieldValidationExamplePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ExampleScaffold(
       title: 'Async Field Validation Example',
       demo: const DeviceScreen(app: AsyncFieldValidationForm()),
-      code:
-          const CodeScreen(codePath: 'lib/examples/async_field_validation_form.dart'),
+      code: const CodeScreen(
+          codePath: 'lib/examples/async_field_validation_form.dart'),
       tutorial: TutorialScreen(
         children: <Widget>[
           const TutorialText('''

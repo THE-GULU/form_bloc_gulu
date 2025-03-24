@@ -646,7 +646,7 @@ class MultiFieldBloc<ExtraData, TState extends MultiFieldBlocState<ExtraData>>
 
   bool get autoValidate => _autoValidate;
 
-  MultiFieldBloc(TState initialState) : super(initialState) {
+  MultiFieldBloc(super.initialState) {
     _onValidationStatus = stream.switchMap((state) {
       return MultiFieldBloc.onValidationStatus(state.flatFieldBlocs);
     }).listen((validationStatus) {

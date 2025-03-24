@@ -70,7 +70,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
   ///  * [maxLength], which discusses the precise meaning of "number of
   ///    characters" and how it may differ from the intuitive meaning.
   const TextFieldBlocBuilder({
-    Key? key,
+    super.key,
     required this.textFieldBloc,
     this.enableOnlyWhenFormBlocCanSubmit = false,
     this.isEnabled = true,
@@ -130,6 +130,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
     this.showSuggestionsWhenIsEmpty = true,
     this.readOnly = false,
     this.toolbarOptions,
+    this.editableTextContextMenuBuilder,
     this.enableSuggestions = true,
     this.animateWhenCanShow = true,
     this.focusOnValidationFailed = true,
@@ -162,8 +163,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
             maxLength > 0),
         keyboardType = keyboardType ??
             (maxLines == 1 ? TextInputType.text : TextInputType.multiline),
-        textStyle = textStyle ?? style,
-        super(key: key);
+        textStyle = textStyle ?? style;
 
   /// {@template flutter_form_bloc.FieldBlocBuilder.fieldBloc}
   /// The `fieldBloc` for rebuild the widget
@@ -575,7 +575,10 @@ class TextFieldBlocBuilder extends StatefulWidget {
   /// If not set, select all and paste will default to be enabled. Copy and cut
   /// will be disabled if [obscureText] is true. If [readOnly] is true,
   /// paste and cut will be disabled regardless.
+  @Deprecated(
+      'ToolbarOptions is deprecated and should not be used. Use editableTextContextMenuBuilder instead.')
   final ToolbarOptions? toolbarOptions;
+  final EditableTextContextMenuBuilder? editableTextContextMenuBuilder;
 
   /// {@macro flutter.services.textInput.enableSuggestions}
   final bool enableSuggestions;
@@ -718,7 +721,7 @@ class TextFieldBlocBuilder extends StatefulWidget {
             fieldTheme.obscureFalseIcon,
       ),
       suggestionsTextStyle: fieldTheme.suggestionsTextStyle ??
-          theme.textTheme.subtitle1!.copyWith(
+          theme.textTheme.titleMedium!.copyWith(
             color: ThemeData.estimateBrightnessForColor(theme.canvasColor) ==
                     Brightness.dark
                 ? Colors.white
@@ -959,6 +962,7 @@ class _TextFieldBlocBuilderState extends State<TextFieldBlocBuilder> {
         strutStyle: widget.strutStyle,
         textAlignVertical: widget.textAlignVertical,
         toolbarOptions: widget.toolbarOptions,
+        editableTextContextMenuBuilder: widget.editableTextContextMenuBuilder,
       ),
       onTap: widget.onTap,
       hideOnLoading: widget.hideOnLoadingSuggestions,

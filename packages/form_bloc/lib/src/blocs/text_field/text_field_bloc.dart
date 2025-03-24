@@ -40,15 +40,12 @@ class TextFieldBloc<ExtraData> extends SingleFieldBloc<String, String,
   TextFieldBloc({
     String? name,
     String initialValue = '',
-    List<Validator<String>>? validators,
-    List<AsyncValidator<String>>? asyncValidators,
-    Duration asyncValidatorDebounceTime = const Duration(milliseconds: 500),
+    super.validators,
+    super.asyncValidators,
+    super.asyncValidatorDebounceTime = const Duration(milliseconds: 500),
     Suggestions<String>? suggestions,
     ExtraData? extraData,
   }) : super(
-          validators: validators,
-          asyncValidators: asyncValidators,
-          asyncValidatorDebounceTime: asyncValidatorDebounceTime,
           initialState: TextFieldBlocState(
             isValueChanged: false,
             initialValue: initialValue,

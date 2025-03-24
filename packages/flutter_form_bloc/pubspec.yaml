@@ -18,7 +18,7 @@ dependencies:
   #  form_bloc: ^0.30.0
   form_bloc:
     git:
-      url: https://github.com/THE-GULU/form_bloc.git
+      url: https://github.com/THE-GULU/form_bloc_gulu.git
       path: packages/form_bloc
   equatable: ">=2.0.5 <3.0.0"
   rxdart: ">=0.27.5 <1.0.0"

@@ -153,17 +153,13 @@ class CheckboxFieldTheme extends FieldTheme {
   final bool canTapItemTile;
 
   const CheckboxFieldTheme({
-    TextStyle? textStyle,
-    MaterialStateProperty<Color?>? textColor,
-    InputDecorationTheme? decorationTheme,
+    super.textStyle,
+    super.textColor,
+    super.decorationTheme,
     this.checkboxTheme,
     this.controlAffinity,
     this.canTapItemTile = false,
-  }) : super(
-          textStyle: textStyle,
-          textColor: textColor,
-          decorationTheme: decorationTheme,
-        );
+  });
 
   CheckboxFieldTheme copyWith({
     TextStyle? textStyle,
@@ -307,18 +303,14 @@ class DateTimeFieldTheme extends FieldTheme {
   final ClearSuffixButtonTheme clearSuffixButtonTheme;
 
   const DateTimeFieldTheme({
-    TextStyle? textStyle,
-    MaterialStateProperty<Color?>? textColor,
-    InputDecorationTheme? decorationTheme,
+    super.textStyle,
+    super.textColor,
+    super.decorationTheme,
     this.textAlign,
     this.showClearIcon,
     @Deprecated('Use clearSuffixButtonTheme.icon') this.clearIcon,
     this.clearSuffixButtonTheme = const ClearSuffixButtonTheme(),
-  }) : super(
-          textStyle: textStyle,
-          textColor: textColor,
-          decorationTheme: decorationTheme,
-        );
+  });
 
   DateTimeFieldTheme copyWith({
     TextStyle? textStyle,
@@ -379,19 +371,15 @@ class DropdownFieldTheme extends FieldTheme {
   final Widget? moreIcon;
 
   const DropdownFieldTheme({
-    TextStyle? textStyle,
-    MaterialStateProperty<Color?>? textColor,
-    InputDecorationTheme? decorationTheme,
+    super.textStyle,
+    super.textColor,
+    super.decorationTheme,
     this.textOverflow,
     this.maxLines,
     this.selectedTextStyle,
     this.selectedMaxLines,
     this.moreIcon,
-  }) : super(
-          textStyle: textStyle,
-          textColor: textColor,
-          decorationTheme: decorationTheme,
-        );
+  });
 
   DropdownFieldTheme copyWith({
     TextStyle? textStyle,
@@ -461,16 +449,12 @@ class SwitchFieldTheme extends FieldTheme {
   final FieldBlocBuilderControlAffinity? controlAffinity;
 
   const SwitchFieldTheme({
-    TextStyle? textStyle,
-    MaterialStateProperty<Color?>? textColor,
-    InputDecorationTheme? decorationTheme,
+    super.textStyle,
+    super.textColor,
+    super.decorationTheme,
     this.switchTheme,
     this.controlAffinity,
-  }) : super(
-          textStyle: textStyle,
-          textColor: textColor,
-          decorationTheme: decorationTheme,
-        );
+  });
 
   SwitchFieldTheme copyWith({
     TextStyle? textStyle,
@@ -513,17 +497,13 @@ class RadioFieldTheme extends FieldTheme {
   final bool canDeselect;
 
   const RadioFieldTheme({
-    TextStyle? textStyle,
-    MaterialStateProperty<Color?>? textColor,
-    InputDecorationTheme? decorationTheme,
+    super.textStyle,
+    super.textColor,
+    super.decorationTheme,
     this.radioTheme,
     this.canTapItemTile = false,
     this.canDeselect = true,
-  }) : super(
-          textStyle: textStyle,
-          textColor: textColor,
-          decorationTheme: decorationTheme,
-        );
+  });
 
   RadioFieldTheme copyWith({
     TextStyle? textStyle,
@@ -578,9 +558,9 @@ class TextFieldTheme extends FieldTheme {
   final TextStyle? suggestionsTextStyle;
 
   const TextFieldTheme({
-    TextStyle? textStyle,
-    MaterialStateProperty<Color?>? textColor,
-    InputDecorationTheme? decorationTheme,
+    super.textStyle,
+    super.textColor,
+    super.decorationTheme,
     this.textAlign,
     @Deprecated('Use clearSuffixButtonTheme.icon') this.clearIcon,
     this.clearSuffixButtonTheme = const ClearSuffixButtonTheme(),
@@ -588,11 +568,7 @@ class TextFieldTheme extends FieldTheme {
     @Deprecated('Use obscureSuffixButtonTheme.falseIcon') this.obscureFalseIcon,
     this.obscureSuffixButtonTheme = const ObscureSuffixButtonTheme(),
     this.suggestionsTextStyle,
-  }) : super(
-          textStyle: textStyle,
-          textColor: textColor,
-          decorationTheme: decorationTheme,
-        );
+  });
 
   TextFieldTheme copyWith({
     TextStyle? textStyle,

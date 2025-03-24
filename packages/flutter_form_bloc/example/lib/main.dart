@@ -23,7 +23,7 @@ class App extends StatelessWidget {
       ),
       builder: (context, child) {
         return FormThemeProvider(
-          theme: FormTheme(
+          theme: const FormTheme(
             checkboxTheme: CheckboxFieldTheme(
               canTapItemTile: true,
             ),
@@ -34,7 +34,7 @@ class App extends StatelessWidget {
           child: child!,
         );
       },
-      home: AllFieldsForm(),
+      home: const AllFieldsForm(),
     );
   }
 }
@@ -336,8 +336,8 @@ class LoadingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Center(
         child: Card(
           child: Container(

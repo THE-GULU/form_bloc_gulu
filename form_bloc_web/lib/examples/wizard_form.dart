@@ -4,7 +4,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -95,10 +95,10 @@ class WizardFormBloc extends FormBloc<String, String> {
 }
 
 class WizardForm extends StatefulWidget {
-  const WizardForm({Key? key}) : super(key: key);
+  const WizardForm({super.key});
 
   @override
-  _WizardFormState createState() => _WizardFormState();
+  State<WizardForm> createState() => _WizardFormState();
 }
 
 class _WizardFormState extends State<WizardForm> {
@@ -143,13 +143,14 @@ class _WizardFormState extends State<WizardForm> {
               body: SafeArea(
                 child: FormBlocListener<WizardFormBloc, String, String>(
                   onSubmitting: (context, state) => LoadingDialog.show(context),
-                  onSubmissionFailed: (context, state) => LoadingDialog.hide(context),
+                  onSubmissionFailed: (context, state) =>
+                      LoadingDialog.hide(context),
                   onSuccess: (context, state) {
                     LoadingDialog.hide(context);
 
                     if (state.stepCompleted == state.lastStep) {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => const SuccessScreen()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (_) => const SuccessScreen()));
                     }
                   },
                   onFailure: (context, state) {
@@ -304,12 +305,12 @@ class LoadingDialog extends StatelessWidget {
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
-  const LoadingDialog({Key? key}) : super(key: key);
+  const LoadingDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Center(
         child: Card(
           child: Container(
@@ -325,7 +326,7 @@ class LoadingDialog extends StatelessWidget {
 }
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

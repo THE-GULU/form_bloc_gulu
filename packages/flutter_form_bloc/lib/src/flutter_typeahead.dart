@@ -556,7 +556,7 @@ class TypeAheadField<T> extends StatefulWidget {
 
   /// Creates a [TypeAheadField]
   TypeAheadField({
-    Key? key,
+    super.key,
     required this.suggestionsCallback,
     required this.itemBuilder,
     required this.onSuggestionSelected,
@@ -586,8 +586,7 @@ class TypeAheadField<T> extends StatefulWidget {
     this.onTap,
   })  : assert(animationStart >= 0.0 && animationStart <= 1.0),
         assert(
-            direction == AxisDirection.down || direction == AxisDirection.up),
-        super(key: key);
+            direction == AxisDirection.down || direction == AxisDirection.up);
 
   @override
   State<TypeAheadField<T>> createState() => _TypeAheadFieldState<T>();
@@ -876,6 +875,8 @@ class _TypeAheadFieldState<T> extends State<TypeAheadField<T>>
         strutStyle: widget.textFieldConfiguration.strutStyle,
         textAlignVertical: widget.textFieldConfiguration.textAlignVertical,
         toolbarOptions: widget.textFieldConfiguration.toolbarOptions,
+        contextMenuBuilder:
+            widget.textFieldConfiguration.editableTextContextMenuBuilder,
       ),
     );
   }
@@ -1214,7 +1215,7 @@ class _SuggestionsListState<T> extends State<_SuggestionsList<T>>
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Error: ${this._error}',
-              style: TextStyle(color: Theme.of(context).errorColor),
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
             ),
           );
   }
@@ -1567,8 +1568,12 @@ class TextFieldConfiguration<T> {
   /// If not set, select all and paste will default to be enabled. Copy and cut
   /// will be disabled if [obscureText] is true. If [readOnly] is true,
   /// paste and cut will be disabled regardless.
+  @Deprecated(
+      'ToolbarOptions is deprecated and should not be used. Use editableTextContextMenuBuilder instead.')
   final ToolbarOptions? toolbarOptions;
   final Iterable<String>? autofillHints;
+
+  final EditableTextContextMenuBuilder? editableTextContextMenuBuilder;
 
   /// Creates a TextFieldConfiguration
   const TextFieldConfiguration({
@@ -1611,6 +1616,7 @@ class TextFieldConfiguration<T> {
     this.scrollPhysics,
     this.textAlignVertical,
     this.toolbarOptions,
+    this.editableTextContextMenuBuilder,
   });
 
   /// Copies the [TextFieldConfiguration] and only changes the specified

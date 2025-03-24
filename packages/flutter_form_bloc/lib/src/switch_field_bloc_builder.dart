@@ -10,7 +10,7 @@ import 'package:form_bloc/form_bloc.dart';
 /// A material design switch
 class SwitchFieldBlocBuilder extends StatelessWidget {
   const SwitchFieldBlocBuilder({
-    Key? key,
+    super.key,
     required this.booleanFieldBloc,
     required this.body,
     this.enableOnlyWhenFormBlocCanSubmit = false,
@@ -34,7 +34,7 @@ class SwitchFieldBlocBuilder extends StatelessWidget {
     this.mouseCursor,
     this.overlayColor,
     this.splashRadius,
-  }) : super(key: key);
+  });
 
   /// {@macro flutter_form_bloc.FieldBlocBuilder.fieldBloc}
   final BooleanFieldBloc booleanFieldBloc;

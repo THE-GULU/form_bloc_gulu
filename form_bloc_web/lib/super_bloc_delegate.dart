@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 class SuperBlocDelegate extends BlocObserver {
   @override
@@ -12,24 +12,24 @@ class SuperBlocDelegate extends BlocObserver {
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
 
-    var _string =
+    var string =
         '\n********************************************************************************\n';
-    _string +=
+    string +=
         '******************************* TRANSITION START *******************************\n';
-    _string +=
+    string +=
         '********************************************************************************\n';
-    _string += 'BLOC: ${bloc.runtimeType}\n';
-    _string += 'EVENT: ${transition.event}\n';
-    _string += 'CURRENT STATE: ${transition.currentState}\n';
-    _string += 'NEXT STATE: ${transition.nextState}\n';
-    _string +=
+    string += 'BLOC: ${bloc.runtimeType}\n';
+    string += 'EVENT: ${transition.event}\n';
+    string += 'CURRENT STATE: ${transition.currentState}\n';
+    string += 'NEXT STATE: ${transition.nextState}\n';
+    string +=
         '********************************************************************************\n';
-    _string +=
+    string +=
         '******************************** TRANSITION END ********************************\n';
-    _string +=
+    string +=
         '********************************************************************************\n';
 
-    _printWrapped(_string);
+    _printWrapped(string);
   }
 
   @override
@@ -43,7 +43,9 @@ class SuperBlocDelegate extends BlocObserver {
   void _printWrapped(String text) {
     final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk
     debugPrint('\n');
-    pattern.allMatches(text).forEach((match) => debugPrint('${match.group(0)}'));
+    pattern
+        .allMatches(text)
+        .forEach((match) => debugPrint('${match.group(0)}'));
     debugPrint('\n');
   }
 }

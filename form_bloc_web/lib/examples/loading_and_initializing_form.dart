@@ -4,7 +4,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class LoadingFormBloc extends FormBloc<String, String> {
 }
 
 class LoadingForm extends StatelessWidget {
-  const LoadingForm({Key? key}) : super(key: key);
+  const LoadingForm({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,10 +116,12 @@ class LoadingForm extends StatelessWidget {
                         child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
-                              const Icon(Icons.sentiment_dissatisfied, size: 70),
+                              const Icon(Icons.sentiment_dissatisfied,
+                                  size: 70),
                               const SizedBox(height: 20),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 12),
                                 alignment: Alignment.center,
                                 child: Text(
                                   state.failureResponse ??
@@ -192,12 +194,12 @@ class LoadingDialog extends StatelessWidget {
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
-  const LoadingDialog({Key? key}) : super(key: key);
+  const LoadingDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
+    return PopScope(
+      canPop: false,
       child: Center(
         child: Card(
           child: Container(
@@ -213,7 +215,7 @@ class LoadingDialog extends StatelessWidget {
 }
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({Key? key}) : super(key: key);
+  const SuccessScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

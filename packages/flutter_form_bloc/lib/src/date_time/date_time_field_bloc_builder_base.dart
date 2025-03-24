@@ -18,7 +18,7 @@ enum DateTimeFieldBlocBuilderBaseType {
 /// A material design date picker.
 class DateTimeFieldBlocBuilderBase<T> extends StatefulWidget {
   const DateTimeFieldBlocBuilderBase({
-    Key? key,
+    super.key,
     required this.dateTimeFieldBloc,
     required this.format,
     required this.type,
@@ -45,7 +45,7 @@ class DateTimeFieldBlocBuilderBase<T> extends StatefulWidget {
     this.textStyle,
     this.textColor,
     this.textAlign,
-  }) : super(key: key);
+  });
 
   final DateTimeFieldBlocBuilderBaseType type;
 
@@ -171,7 +171,7 @@ class _DateTimeFieldBlocBuilderBaseState<T>
       final date = await _showDatePicker(context);
 
       if (date != null) {
-        if (!mounted) return;
+        if (!context.mounted) return;
         final time = await _showTimePicker(context);
         result = _combine(date, time);
       }
